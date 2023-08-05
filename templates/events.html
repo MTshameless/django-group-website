@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+  {% block content %}
+
+
+    <div class="container">
+    {% for new in news %}
+    {% if forloop.first %}
+    <div class="jumbotron p-3 p-md-5 text-white rounded bg-dark" style="background-image: url({{ new.image.url }});background-blend-mode: overlay;background-size:cover;">
+        <div class="col-md-8 px-0">
+        <h1 class="display-4 font-italic">{{ new.title }}</h1>
+        <p class="lead my-3">{{ new.short_description }}</p>
+        <p class="lead mb-0"><a href="{% url 'News' new.slug %}" class="text-white font-weight-bold">Continue reading...</a></p>
+        </div>
+    </div>
+    
+    <h3 class="text-uppercase text-warning" style="letter-spacing: 2px;">Events</h3>
+    {% else %}
+    <div class="row mb-2">
+      <div class="col-md-6">
+          <div class="card border-0" >
+            <div class="card-body">
+                <h3><a href="{% url 'News' new.slug %}" class="text-dark">{{ new.title }}</a></h3>
+                <small class="mb-1 text-muted">{{ new.created_at | timesince }} ago </small>
+                <p class="card-text">{{ new.short_description }}</p>
+            </div>
+          </div>
+      </div>
+    </div>
+    {% endif %}
+    {% endfor %}
+    </div>
+
+
+{% endblock %}

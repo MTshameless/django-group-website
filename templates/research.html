@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div id="main">
+    <div id="content" class="column" role="main">
+      <a id="main-content" tabindex="-1"></a>
+      <div class="region-content">
+        <div id="block-system-main" class="block block-system first last odd">
+            <div class="reserach-block">
+              <div class="text">
+                <div class="container">
+                  {% for research in researches %}
+                    <h2 class="h40-style">
+                      {{ research.name }}
+                    </h2>
+                    <div class="field field-name-body field-type-text-with-summary field-label-hidden">
+                      <div class="field-items">
+                        <div class="field-item even">
+                          <p>
+                            {{ research.description }}
+                          </p> 
+                        </div>
+                      </div>
+                    </div>
+                    <div class="container d-flex justify-content-center align-items-center">
+                      <div class="image-container">
+                        <img src="{{ research.image.url }}" alt="research area">
+                        </div>
+                      </div>
+                    </div>
+                    <div style="width: 60%; margin: 0 auto;">
+                      <h3 class="pink-title">Representative publications</h3>
+                      <div class="field field-name-field-publications field-type-text-with-summary field-label-hidden">
+                        <div class="field-items">
+                          <div class="field-item even">
+                            <ul>
+                              {% for publication in research.publications.all %}
+                              <li>{{ publication.authors }}, <a href="{{ publication.doi }}" target="_blank" title="Open in new window">{{ publication }}</a>, <em>{{ publication.journal }}</em> <strong>{{ publication.publish_year }}</strong>, <em>{{ publication.publish_issue }}</em>, {{ publication.publish_page }}.</li>
+                              {% endfor %}
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  {% endfor %}
+                  </div>
+              </div>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+
+  {% endblock %}

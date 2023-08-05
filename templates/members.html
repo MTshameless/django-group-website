@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block content %}
+
+
+    <div class="container">
+        {% for position in positions %}
+        <h2 class="text-center">{{ position }}</h2>
+        <div class="row">
+            {% for member in position.member.all %}
+          <div class="col-md-4 mb-4">
+            <div class="card h-100 d-flex flex-column">
+              <div class="image-container-1 flex-grow-1">
+                <img src="{{ member.image.url }}" alt="Image {{ forloop.counter }}" class="card-img-top img-fluid">
+              </div>
+              <div class="card-body d-flex flex-column justify-content-end">
+                <h4 class="card-title">{{ member.name }}</h4>
+                <p class="card-text" style="margin-bottom: 3px;">Homeland: {{ member.homeland }}</p>
+                <p class="card-text" style="margin-bottom: 3px;">Hobby: {{ member.hobby }}</p>
+                <p class="card-text" style="margin-bottom: 3px;">Email: {{ member.email }}</p>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+
+        </div>
+        {% endfor %}
+    </div>
+     {% endblock %}

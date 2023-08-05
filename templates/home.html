@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load static %}
+
+  {% block content %}
+  <!-- Image container -->
+  <div class="container d-flex justify-content-center align-items-center">
+    <div class="image-container">
+      <img src="{% static 'images/members.jpg' %}" alt="Welcome">
+      <div class="image-caption d-flex align-items-center justify-content-center">
+        <p class="text-white text-center">Welcome to the family of Chu Group !</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Chemistry in Our Group Section -->
+  <div class="container">
+    <h2 class="text-center">Chemistry in our group</h2>
+    <div class="row">
+      {% for research in researches %}
+      <div class="col-md-4 mb-4">
+        <div class="card h-100 d-flex flex-column">
+          <div class="image-container-1 flex-grow-1">
+            <img src="{{ research.image.url }}" alt="Image {{ forloop.counter }}" class="card-img-top img-fluid">
+          </div>
+          <div class="card-body d-flex flex-column justify-content-end">
+            <h3 class="card-title">{{ research.name }}</h3>
+            <p class="card-text">{{ research.description }}</p>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+
+  <!-- Join Our Team Section -->
+  <div class="container">
+    <h2 class="text-center">Join Our Team</h2>
+    <div class="centered-content" style="font-size: larger; font-weight: bold; color: #7e0707;">
+      <p class="text-center">Are you passionate about chemistry and want to be part of our research group?</p>
+      <p class="text-center">We welcome talented and motivated individuals to join our team.</p>
+      <p class="text-center">Contact us at: zchu@hnu.edu.cn</p>
+    </div>
+  </div>
+
+{% endblock %}
